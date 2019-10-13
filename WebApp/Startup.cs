@@ -45,13 +45,18 @@ namespace WebApp
                 .AddCookie("Cookies")
                 .AddOpenIdConnect("oidc", options =>
                 {
+                    options.GetClaimsFromUserInfoEndpoint = true;
                     options.TokenValidationParameters.ValidIssuer = Constants.Issuer;
-                    options.ClientId = Constants.ClientId;
+                    options.ClientId = Constants.MvcClientId;
                     options.Authority = Constants.Authority;
-                    options.ClientSecret = Constants.ClientSecret;
+                    options.ClientSecret = Constants.MvcClientSecret;
                     options.ResponseType = "code id_token";
                     options.CallbackPath = "/signin-oidc";
                     options.Scope.Add(Constants.SampleApiScope);
+                    options.Scope.Add("openid");
+                    options.Scope.Add("profile");
+                    options.Scope.Add("email");
+                    options.SaveTokens = true;
                 });
         }
 

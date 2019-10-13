@@ -1,8 +1,22 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Authentication
+@using Shared
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div>
+    <h1>Your users claims:</h1>
+    <ul>
+        @foreach (var claim in User.Claims)
+        {
+            <li><b>@claim.Type:</b> @claim.Value</li>
+        }
+    </ul>
+    <h1>Your current token:</h1>
+    <ul>
+        <li><b>Access token:</b> @await Context.GetTokenAsync("access_token")</li>
+        <li><b>Identity token:</b>  @await Context.GetTokenAsync("id_token")</li> 
+    </ul>
+    <h1>Sample request:</h1>
+    <b>Request GET @Constants.SampleApiUrl/api/sample:</b> @ViewData["api-result"]
 </div>
