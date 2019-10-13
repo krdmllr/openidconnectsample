@@ -7,10 +7,20 @@
              x:Class="MobileApp.MainPage">
 
     <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
+        <Button Text="Start authentication" Clicked="StartAuthenticationClicked" />
+        <Button x:Name="RefreshTokenButton" Text="Refresh token" Clicked="RefreshToken" IsEnabled="False" />
+        <TableView Intent="Data" HasUnevenRows="True">
+            <TableRoot>
+                <TableSection x:Name="ClaimsSection" Title="Claims" />
+                <TableSection x:Name="TokenSection" Title="Token" />
+                <TableSection x:Name="RequestSection" Title="Request">
+                    <ViewCell>
+                        <Button Text="Request data" x:Name="RequestButton" Clicked="RequestButtonClicked"></Button>
+                    </ViewCell>
+                    <TextCell x:Name="RequestResultCell" />
+                </TableSection>
+            </TableRoot>
+        </TableView> 
     </StackLayout>
 
 </ContentPage>
