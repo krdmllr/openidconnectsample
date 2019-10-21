@@ -69,6 +69,7 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="iOSOidcBrowser.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -136,7 +137,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\MobileApp\MobileApp.csproj">
-      <Project>{19C4F55F-D49D-42EC-A0D6-BE6A3BBA0121}</Project>
+      <Project>{B9D4BDDC-C601-4095-A0B3-59488A080349}</Project>
       <Name>MobileApp</Name>
     </ProjectReference>
   </ItemGroup>

@@ -10,12 +10,12 @@ using Application = Android.App.Application;
 
 namespace MobileApp.Droid
 {
-    public class OidcBrowser : IBrowser
+    public class AdndroidOidcBrowser : IBrowser
     {
         private readonly Activity _context;
         private readonly CustomTabsActivityManager _manager; 
 
-        public OidcBrowser()
+        public AdndroidOidcBrowser()
         {
             _context = Application.Context.GetActivity();
             _manager = new CustomTabsActivityManager(MainActivity.CurrentActivity);
@@ -23,6 +23,7 @@ namespace MobileApp.Droid
 
         public Task<BrowserResult> InvokeAsync(BrowserOptions options)
         {
+            // The task will be finished when the result of the authentication comes in
             var task = new TaskCompletionSource<BrowserResult>();
 
             var builder = new CustomTabsIntent.Builder(_manager.Session)
@@ -47,6 +48,7 @@ namespace MobileApp.Droid
                 });
             };
 
+            // The activity will be called when the redirect url is opened and will invoke the callback
             OidcCallbackActivity.Callbacks += callback;
 
             customTabsIntent.LaunchUrl(MainActivity.CurrentActivity, Android.Net.Uri.Parse(options.StartUrl));

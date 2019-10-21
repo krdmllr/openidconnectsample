@@ -4,6 +4,7 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using Xamarin.Forms;
 
 namespace MobileApp.iOS
 {
@@ -22,6 +23,7 @@ namespace MobileApp.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            DependencyService.Register<iOSOidcBrowser>();
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
 

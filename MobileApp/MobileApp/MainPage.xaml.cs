@@ -11,6 +11,7 @@ using IdentityModel.OidcClient.Browser;
 using Shared;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 
 namespace MobileApp
 {
@@ -24,7 +25,8 @@ namespace MobileApp
 
         public MainPage()
         {
-            InitializeComponent(); 
+            InitializeComponent();
+            On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
         }
 
         private async void StartAuthenticationClicked(object sender, EventArgs e)
@@ -39,7 +41,7 @@ namespace MobileApp
                     Authority = Constants.Authority,
                     ClientId = Constants.MobileClientId,
                     Scope = "openid profile email api offline_access",
-                    RedirectUri = "xamclient://callback",
+                    RedirectUri = "xamarinclient://callback",
                     Browser = browser,
 
                     ResponseMode = OidcClientOptions.AuthorizeResponseMode.Redirect
@@ -57,11 +59,11 @@ namespace MobileApp
                     Text = x.Type,
                     Detail = x.Value
                 }));
-                await UserDialogs.Instance.AlertAsync("Authenticated");
+                Device.BeginInvokeOnMainThread(async () => await UserDialogs.Instance.AlertAsync("Authenticated"));
             }
             finally
             {
-                UserDialogs.Instance.HideLoading();
+                Device.BeginInvokeOnMainThread(()=> UserDialogs.Instance.HideLoading());
             }
         }
 
