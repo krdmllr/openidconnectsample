@@ -11,6 +11,6 @@
         public const string MobileClientId = "native.hybrid"; // Client id for the mobile client
         public const string Issuer = "https://demo.identityserver.io/"; // Token issuer
         public const string SampleApiScope = "api"; // Scope name of the sample API known by authority
-        public const string SampleApiUrl = "https://localhost:500";
+        public const string SampleApiUrl = "https://xamexpertopenidapi.azurewebsites.net";
     }
 }
