@@ -24,9 +24,14 @@ namespace MobileApp.Droid
 
             System.Diagnostics.Debug.WriteLine("OIDC: " + Intent.DataString);
 
-            Callbacks?.Invoke(Intent.DataString);
-
             Finish();
+
+            Callbacks?.Invoke(Intent.DataString);
+             
+            var intent = new Intent(this, typeof(MainActivity));
+            intent.SetFlags(ActivityFlags.ClearTop);
+            intent.SetFlags(ActivityFlags.SingleTop);
+            StartActivity(intent);
         }
     }
 }

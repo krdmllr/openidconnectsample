@@ -12,12 +12,12 @@ namespace MobileApp.Droid
 {
     public class AdndroidOidcBrowser : IBrowser
     {
-        private readonly Activity _context;
+        private readonly Activity _currentActivity;
         private readonly CustomTabsActivityManager _manager; 
 
         public AdndroidOidcBrowser()
         {
-            _context = Application.Context.GetActivity();
+            _currentActivity = Application.Context.GetActivity();
             _manager = new CustomTabsActivityManager(MainActivity.CurrentActivity);
         }
 
@@ -40,8 +40,7 @@ namespace MobileApp.Droid
             Action<string> callback = null;
             callback = url =>
             {
-                OidcCallbackActivity.Callbacks -= callback;
-
+                OidcCallbackActivity.Callbacks -= callback; 
                 task.SetResult(new BrowserResult()
                 {
                     Response = url

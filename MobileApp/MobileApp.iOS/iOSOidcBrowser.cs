@@ -1,10 +1,8 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Threading.Tasks;
 using AuthenticationServices;
 using Foundation;
 using IdentityModel.OidcClient.Browser;
-using SafariServices;
 using UIKit;
 
 namespace MobileApp.iOS
